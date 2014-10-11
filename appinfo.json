@@ -1,0 +1,19 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "mxh2@cornell.edu",
+    "longName": "pebble14",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "shortName": "pebble14",
+    "uuid": "76734d60-2513-4359-9f60-6b8b5fb0a8b9",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
