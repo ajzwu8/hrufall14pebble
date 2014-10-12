@@ -56,15 +56,13 @@ void update_frequency(){
 
 void accel_data_handler(AccelData *data, uint32_t num_samples) {
   for(uint32_t c = 0; c < num_samples && taps<=tap_max; c ++){
-      if ((magnitude_no_root(data[c].x,data[c].y,data[c].z)-1000000) > 190000 && 
-          ((int)(data[c].timestamp)>(last_timestamp+250))) {
+      if ((magnitude_no_root(data[c].x,data[c].y,data[c].z)-1000000) > 180000 && 
+          ((int)(data[c].timestamp)>(last_timestamp+300))) {
           if(last_timestamp){
              difference+=data[c].timestamp - last_timestamp;
           }
           last_timestamp = data[c].timestamp;
           taps++;
-          snprintf(accel_data,30,"%d,%d",((int)data[c].timestamp),difference);
-          APP_LOG(APP_LOG_LEVEL_DEBUG,accel_data);
       }
   }
   if (taps>tap_max) {
@@ -83,7 +81,6 @@ void accel_data_handler(AccelData *data, uint32_t num_samples) {
 // -----------------------------CLICK HANDLING----------------------------
 // Menu clicking
 void window_click_handler(ClickRecognizerRef recognizer, void *context) {
-  bpm = 60;
   set_bpm_string();
   window_stack_push(menu,true);
 }
@@ -130,6 +127,7 @@ void click_config_provider(void *context) {
 // ---------------------------- CALLBACKS ----------------------------------
 // Callback functionality, shows record when called
 void set_callback(int index, void *ctx) {
+  bpm = 60;
   window_stack_push(set,true);
 }
 
@@ -244,11 +242,13 @@ void record_load(Window *record) {
   accel_service_set_sampling_rate(ACCEL_SAMPLING_25HZ);
   
   layer_add_child(window_get_root_layer(record), text_layer_get_layer(record_bpm));
+  size_t heap_bytes_used(void);
 }
   
 void record_unload(Window *record) {
   text_layer_destroy(record_text);
   text_layer_destroy(record_bpm);
+  app_timer_cancel(rep_timer);
 }
   
   
