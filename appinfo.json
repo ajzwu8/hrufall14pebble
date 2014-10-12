@@ -4,13 +4,13 @@
         ""
     ],
     "companyName": "mxh2@cornell.edu",
-    "longName": "Metronome2",
+    "longName": "Metronome",
     "projectType": "native",
     "resources": {
         "media": []
     },
-    "shortName": "Metronome2",
-    "uuid": "746641e6-4d5c-4bc7-aa75-3d00aeb7837d",
+    "shortName": "Metronome",
+    "uuid": "76734d60-2513-4359-9f60-6b8b5fb0a8b9",
     "versionCode": 1,
     "versionLabel": "1.0",
     "watchapp": {
